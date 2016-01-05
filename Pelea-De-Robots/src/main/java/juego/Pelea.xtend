@@ -2,11 +2,13 @@ package juego
 
 class Pelea {
 	
+	var Jugador jugador
 	var Robot robotPropio
 	var Robot robotRival
 	var int apuesta
 	
-	new (){
+	new (Jugador jugador){
+		this.jugador = jugador
 		this.robotPropio = null
 		this.robotRival = null
 		this.apuesta = 0
@@ -39,8 +41,7 @@ class Pelea {
 	}
 	
 	def actualizarGanancia(){
-		//ver como se lo sumo al jugador
-		apuesta * (this.robotPropio.poderEfectivo + this.robotRival.poderEfectivo) / this.robotPropio.poderEfectivo
+		this.jugador.actualizarGanancia(this.apuesta * (this.robotPropio.poderEfectivo + this.robotRival.poderEfectivo) / this.robotPropio.poderEfectivo)
 	}
 	
 	def void actualizarDesgaste(){

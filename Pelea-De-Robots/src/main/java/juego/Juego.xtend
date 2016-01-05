@@ -10,11 +10,12 @@ class Juego {
 		this.jugadores = newArrayList
 	}
 	
-	def listadoDePersonajes(Jugador jugador){
-		var listado = newArrayList
-		for (Jugador jug : jugadores){
-			if(jug != jugador)
-				listado.add()
-		}
+	def nuevoJugador(String nombre){
+		var jugador = new Jugador(nombre)
+		this.jugadores.add(jugador)
+	}
+	
+	def eliminarJugador(Jugador jugador){
+		this.jugadores.remove(jugador)
 	}
 }

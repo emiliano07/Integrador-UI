@@ -1,5 +1,9 @@
 package juego
 
+import exception.ApuestaExedidaException
+import exception.NoHayDineroParaCompraException
+import exception.NoHayDineroParaMejoraException
+import exception.NoHayDineroParaReparacionException
 import java.util.ArrayList
 
 class Jugador {
@@ -17,13 +21,18 @@ class Jugador {
 	}
 	
 	def void comprar(Robot robot){
-		this.robots.add(robot)
-		//ver dinero
+		var costoDeCompra = robot.precio
+		if (costoDeCompra <= this.dinero){
+			this.robots.add(robot)
+			this.dinero = this.dinero - costoDeCompra
+		}
+		else
+			throw new NoHayDineroParaCompraException
 	}
 	
 	def void vender(Robot robot){
 		this.robots.remove(robot)
-		//ver dinero
+		this.dinero = this.dinero + robot.precio
 	}
 	
 	def void reparacionParcial(Robot robot, int reparacion){
@@ -33,7 +42,7 @@ class Jugador {
 			this.dinero = this.dinero - costoDeReparacion
 		}
 		else
-			throw new noHayDineroParaReparacionException
+			throw new NoHayDineroParaReparacionException
 	}
 	
 	def void reparacionTotal(Robot robot){
@@ -43,11 +52,11 @@ class Jugador {
 			this.dinero = this.dinero - costoDeReparacion
 		}
 		else
-			throw new noHayDineroParaReparacionException
+			throw new NoHayDineroParaReparacionException
 	}
 		
 	def iniciarPelea(){
-		this.peleaActiva = new Pelea
+		this.peleaActiva = new Pelea(this)
 	}
 	
 	def seleccionarRobotPropio(Robot robot){
@@ -70,11 +79,15 @@ class Jugador {
 			this.dinero = this.dinero - apuesta
 		}
 		else
-			throw new apuestaExedidaException
+			throw new ApuestaExedidaException
 	}
 	
 	def pelear(){
 		this.peleaActiva.pelear
+	}
+	
+	def actualizarGanancia(int ganancia){
+		this.dinero = this.dinero + ganancia
 	}
 	
 	def mejorar(Robot robot, Mejora mejora){
@@ -83,6 +96,6 @@ class Jugador {
 			this.dinero = this.dinero - mejora.precio
 		}
 		else
-			throw new noHayDineroParaMejoraException
+			throw new NoHayDineroParaMejoraException
 	}
 }
