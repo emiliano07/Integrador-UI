@@ -1,5 +1,8 @@
 package juego
 
+import org.eclipse.xtend.lib.annotations.Accessors
+
+@Accessors
 class Pelea {
 	
 	var Jugador jugador
@@ -45,6 +48,6 @@ class Pelea {
 	}
 	
 	def void actualizarDesgaste(){
-		this.robotRival.actualizarDesgaste(Math.max(5,(this.robotPropio.poderEfectivo - this.robotRival.poderEfectivo)))
+		this.robotPropio.actualizarDesgaste(Math.max(5,(this.robotPropio.poderEfectivo - this.robotRival.poderEfectivo)))
 	}
 }

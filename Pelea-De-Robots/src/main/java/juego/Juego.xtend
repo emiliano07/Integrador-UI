@@ -1,7 +1,9 @@
 package juego
 
 import java.util.ArrayList
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class Juego {
 	
 	var ArrayList<Jugador> jugadores

@@ -16,8 +16,4 @@ class Mejora {
 		this.mejora = mejora
 		this.precio = precio
 	}
-	
-	def aplicarMejora(Robot robot){
-		robot.mejorar(this.mejora)
-	}
 }

@@ -9,9 +9,9 @@ class Robot {
 	var int poder
 	var int deterioro
 	
-	new(String nombre){
+	new(String nombre, int poder){
 		this.nombre = nombre
-		this.poder = 0
+		this.poder = poder
 		this.deterioro = 0
 	}
 	
