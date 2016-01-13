@@ -6,7 +6,7 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 
-class PantallaPrincipalWindow extends SimpleWindow<Juego>{
+class MejorarWindow extends SimpleWindow<Juego>{
 	
 	new(WindowOwner parent, Juego juego) {
 		super(parent, juego)
