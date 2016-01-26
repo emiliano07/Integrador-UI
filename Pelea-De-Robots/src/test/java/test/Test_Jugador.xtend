@@ -1,8 +1,8 @@
 package test
 
-import juego.Jugador
-import juego.Mejora
-import juego.Robot
+import game.Jugador
+import game.Mejora
+import game.Robot
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

@@ -1,18 +1,18 @@
 package test
 
-import juego.Juego
-import juego.Jugador
+import game.Game
+import game.Jugador
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
 class Test_Juego {
 	
-	var Juego juego
+	var Game juego
 	
 	@Before
 	def void setUp() {
-		this.juego = new Juego
+		this.juego = new Game
 	}
 	
 	@Test 

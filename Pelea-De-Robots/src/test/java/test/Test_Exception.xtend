@@ -4,9 +4,9 @@ import exception.ApuestaExedidaException
 import exception.NoHayDineroParaCompraException
 import exception.NoHayDineroParaMejoraException
 import exception.NoHayDineroParaReparacionException
-import juego.Jugador
-import juego.Mejora
-import juego.Robot
+import game.Jugador
+import game.Mejora
+import game.Robot
 import org.junit.Before
 import org.junit.Test
 

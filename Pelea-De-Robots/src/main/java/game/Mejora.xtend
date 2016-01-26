@@ -1,9 +1,10 @@
-package juego
+package game
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
-@Accessors
-class Mejora {
+@Observable
+@Accessors class Mejora {
 	
 	var String nombre
 	var String descripcion

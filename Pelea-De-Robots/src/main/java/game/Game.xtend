@@ -1,12 +1,13 @@
-package juego
+package game
 
-import java.util.ArrayList
+import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
-@Accessors
-class Juego {
+@Observable
+@Accessors class Game {
 	
-	var ArrayList<Jugador> jugadores
+	var List<Jugador> jugadores
 	
 	new(){
 		this.jugadores = newArrayList

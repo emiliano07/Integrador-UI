@@ -1,25 +1,25 @@
-package juego
+package game
 
 import exception.ApuestaExedidaException
 import exception.NoHayDineroParaCompraException
 import exception.NoHayDineroParaMejoraException
 import exception.NoHayDineroParaReparacionException
-import java.util.ArrayList
+import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
-@Accessors
-class Jugador {
+@Observable
+@Accessors class Jugador {
 
 	var String nombre
 	var int dinero
-	var ArrayList<Robot> robots
+	var List<Robot> robots
 	var Pelea peleaActiva
 	
 	new(String nombre){
 		this.nombre = nombre
 		this.dinero = 0
 		this.robots = newArrayList
-		this.peleaActiva = null
 	}
 	
 	def void comprar(Robot robot){
@@ -56,10 +56,6 @@ class Jugador {
 		else
 			throw new NoHayDineroParaReparacionException
 	}
-		
-	def iniciarPelea(){
-		this.peleaActiva = new Pelea(this)
-	}
 	
 	def seleccionarRobotPropio(Robot robot){
 		peleaActiva.seleccionarRobotPropio(robot)
@@ -70,9 +66,9 @@ class Jugador {
 	}
 	
 	def Boolean puedoApostar(int apuesta) {
-		if((apuesta * 100 / this.dinero) < 76)
-			return true
-		return false
+		if(apuesta == 0 || !((apuesta * 100 / this.dinero) < 76))
+			return false
+		return true
 	}
 	
 	def definirApuesta(int apuesta){
@@ -94,7 +90,7 @@ class Jugador {
 	
 	def mejorar(Robot robot, Mejora mejora){
 		if (mejora.precio <= this.dinero){
-			robot.mejorar(mejora.mejora)
+			robot.mejorar(mejora)
 			this.dinero = this.dinero - mejora.precio
 		}
 		else

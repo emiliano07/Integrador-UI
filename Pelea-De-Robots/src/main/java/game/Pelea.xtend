@@ -1,20 +1,23 @@
-package juego
+package game
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.utils.Observable
 
-@Accessors
-class Pelea {
+@Observable
+@Accessors class Pelea {
 	
 	var Jugador jugador
 	var Robot robotPropio
 	var Robot robotRival
-	var int apuesta
+	var Integer apuesta
+	var Boolean gane
 	
 	new (Jugador jugador){
 		this.jugador = jugador
 		this.robotPropio = null
 		this.robotRival = null
-		this.apuesta = 0
+		this.apuesta = null
+		this.gane = null
 	}
 	
 	def seleccionarRobotPropio(Robot robot){
@@ -37,10 +40,18 @@ class Pelea {
 		if(numeroAlAzar <= this.robotPropio.poderEfectivo / (this.robotPropio.poderEfectivo + this.robotRival.poderEfectivo)){
 			actualizarGanancia
 			actualizarDesgaste
+			this.gane = true
 		}
 		else{
 			actualizarDesgaste
+			this.gane = false
 		}	
+	}
+	
+	def String resultado(){
+		if(this.gane)
+			return "Resultaste el ganador de la Pelea. Felicitaciones!!!"
+		return "Lamentablemente fuiste derrotado. No te desepciones, intentalo nuevamente"
 	}
 	
 	def actualizarGanancia(){
@@ -49,5 +60,9 @@ class Pelea {
 	
 	def void actualizarDesgaste(){
 		this.robotPropio.actualizarDesgaste(Math.max(5,(this.robotPropio.poderEfectivo - this.robotRival.poderEfectivo)))
+	}
+	
+	def Boolean cumpleRequisitos(){
+		return this.apuesta >= 0
 	}
 }
