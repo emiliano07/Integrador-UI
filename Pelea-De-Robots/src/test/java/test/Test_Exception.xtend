@@ -6,6 +6,7 @@ import exception.NoHayDineroParaMejoraException
 import exception.NoHayDineroParaReparacionException
 import game.Jugador
 import game.Mejora
+import game.Pelea
 import game.Robot
 import org.junit.Before
 import org.junit.Test
@@ -18,7 +19,7 @@ class Test_Exception {
 	@Before
 	def void setUp() {
 		this.jug = new Jugador("emi")
-		this.robot = new Robot("rob",100)
+		this.robot = new Robot("rob",100,jug)
 	}
 	
 	@Test 
@@ -59,8 +60,7 @@ class Test_Exception {
 	@Test 
 	def void apuestaExedidaException() {
 		jug.dinero = 10
-		jug.iniciarPelea
-		
+		jug.peleaActiva = new Pelea(jug)
 		try {
 			jug.definirApuesta(75)
 		} 

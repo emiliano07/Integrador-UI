@@ -2,6 +2,7 @@ package test
 
 import game.Jugador
 import game.Mejora
+import game.Pelea
 import game.Robot
 import org.junit.Assert
 import org.junit.Before
@@ -17,7 +18,7 @@ class Test_Jugador {
 	@Before
 	def void setUp() {
 		this.jugador = new Jugador("emi")
-		this.robot = new Robot("rob",100)
+		this.robot = new Robot("rob",100,jugador)
 	}
 	
 	@Test 
@@ -63,20 +64,20 @@ class Test_Jugador {
 	@Test 
 	def void iniciarPelea(){
 		Assert::assertEquals(null,jugador.peleaActiva)
-		jugador.iniciarPelea
+		jugador.peleaActiva = new Pelea(jugador)
 		Assert::assertEquals("emi",jugador.peleaActiva.jugador.nombre)
 	}
 	
 	@Test 
 	def void seleccionarRobotPropio(){
-		jugador.iniciarPelea
+		jugador.peleaActiva = new Pelea(jugador)
 		jugador.seleccionarRobotPropio(robot)
 		Assert::assertEquals("rob",jugador.peleaActiva.robotPropio.nombre)
 	}
 	
 	@Test 
 	def void seleccionarRobotRival(){
-		jugador.iniciarPelea
+		jugador.peleaActiva = new Pelea(jugador)
 		jugador.seleccionarRobotRival(robot)
 		Assert::assertEquals("rob",jugador.peleaActiva.robotRival.nombre)
 	}
@@ -93,7 +94,7 @@ class Test_Jugador {
 	@Test 
 	def void definirApuesta(){
 		jugador.dinero = 100
-		jugador.iniciarPelea
+		jugador.peleaActiva = new Pelea(jugador)
 		jugador.definirApuesta(75)
 		Assert::assertEquals(75,jugador.peleaActiva.apuesta)		
 	}
@@ -120,8 +121,9 @@ class Test_Jugador {
 	
 	@Test
 	def void pelear(){
-		var Robot robotRival = new Robot("rival",200)
-		jugador.iniciarPelea
+		var Jugador jugadorRival = new Jugador("Beto")
+		var Robot robotRival = new Robot("rival",200,jugadorRival)
+		jugador.peleaActiva = new Pelea(jugador)
 		jugador.peleaActiva.seleccionarRobotPropio(robot)
 		jugador.peleaActiva.seleccionarRobotRival(robotRival)
 		jugador.dinero = 1000
