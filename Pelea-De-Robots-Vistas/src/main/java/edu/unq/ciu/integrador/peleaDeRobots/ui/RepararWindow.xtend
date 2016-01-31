@@ -61,12 +61,9 @@ class RepararWindow extends SimpleWindow<RepararApplicationModel>{
 		var buttonPanel = new Panel(mainPanel)
 		buttonPanel.setLayout(new HorizontalLayout)
 		
-		//val elementSelected = new NotNullObservable("mejoraSeleccionada")
-		
 		new Button(buttonPanel) => [
 			caption = "Aceptar"
 			onClick [ | this.reparar() ]
-			//bindEnabled(elementSelected)
 			width = 75
 			height = 20
 		]

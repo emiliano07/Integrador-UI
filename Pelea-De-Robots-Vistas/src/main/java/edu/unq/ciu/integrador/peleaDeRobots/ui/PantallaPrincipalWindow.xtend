@@ -54,40 +54,40 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 			fontSize = 10
 		]
 		
-		var tablePanel = new Panel(mainPanel)
-		tablePanel.setLayout(new HorizontalLayout)
+		var tablePanel_I = new Panel(mainPanel)
+		tablePanel_I.setLayout(new HorizontalLayout)
 		
-		var table = new Table<Robot>(tablePanel, Robot) => [
+		var tablaDeRobotsPropios = new Table<Robot>(tablePanel_I, Robot) => [
 			bindItemsToProperty("jugador.robots")
 			bindValueToProperty("robotSeleccionado")
 		]
 		
-		new Column<Robot>(table) => [
+		new Column<Robot>(tablaDeRobotsPropios) => [
 			title = "Nombre"
 			fixedSize = 120
 			bindContentsToProperty("nombre")
 			
 		]
 		
-		new Column<Robot>(table) => [
+		new Column<Robot>(tablaDeRobotsPropios) => [
 			title = "Daño"
 			fixedSize = 120
 			bindContentsToProperty("deterioro")
 		]
 		
-		new Column<Robot>(table) => [
+		new Column<Robot>(tablaDeRobotsPropios) => [
 			title = "Poder"
 			fixedSize = 120
 			bindContentsToProperty("poder")
 		]
 		
-		new Column<Robot>(table) => [
+		new Column<Robot>(tablaDeRobotsPropios) => [
 			title = "Poder Efectivo"
 			fixedSize = 120
 			bindContentsToProperty("poderEfectivo")
 		]
 		
-		new Column<Robot>(table) => [
+		new Column<Robot>(tablaDeRobotsPropios) => [
 			title = "Precio"
 			fixedSize = 120
 			bindContentsToProperty("precio")
@@ -95,7 +95,7 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 		
 		val elementSelected = new NotNullObservable("robotSeleccionado")
 		
-		var buttonPanel = new Panel(tablePanel)
+		var buttonPanel = new Panel(tablePanel_I)
 		buttonPanel.setLayout(new VerticalLayout)
 		
 		new Button(buttonPanel) => [
@@ -120,33 +120,33 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 			fontSize = 10
 		]
 		
-		var table2Panel = new Panel(mainPanel)
-		table2Panel.setLayout(new HorizontalLayout)
+		var tablePanel_II = new Panel(mainPanel)
+		tablePanel_II.setLayout(new HorizontalLayout)
 		
-		var table2 = new Table<Robot>(table2Panel, Robot) => [
+		var tablaDeRobotsRivales = new Table<Robot>(tablePanel_II, Robot) => [
 			bindItemsToProperty("robotsRivales")
 			bindValueToProperty("robotRivalSeleccionado")
 		]
 		
-		new Column<Robot>(table2) => [
+		new Column<Robot>(tablaDeRobotsRivales) => [
 			title = "Dueño"
 			fixedSize = 120
 			bindContentsToProperty("dueño.nombre")
 		]
 		
-		new Column<Robot>(table2) => [
+		new Column<Robot>(tablaDeRobotsRivales) => [
 			title = "Nombre"
 			fixedSize = 120
 			bindContentsToProperty("nombre")
 		]
 		
-		new Column<Robot>(table2) => [
+		new Column<Robot>(tablaDeRobotsRivales) => [
 			title = "Poder"
 			fixedSize = 120
 			bindContentsToProperty("poder")
 		]
 		
-		new Column<Robot>(table2) => [
+		new Column<Robot>(tablaDeRobotsRivales) => [
 			title = "Daño"
 			fixedSize = 120
 			bindContentsToProperty("deterioro")
@@ -154,7 +154,7 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 		
 		val elementSelected2 = new NotNullObservable("robotRivalSeleccionado")
 		
-		new Button(table2Panel) => [
+		new Button(tablePanel_II) => [
 			caption = "Competir"
 			onClick [ | this.competir ]
 			bindEnabled(elementSelected)
@@ -178,7 +178,6 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 	
 	def competir(){
 		var pelea = new Pelea(modelObject.jugador)
-		modelObject.jugador.peleaActiva = pelea
 		pelea.seleccionarRobotPropio(modelObject.robotSeleccionado)
 		pelea.seleccionarRobotRival(modelObject.robotRivalSeleccionado)
 		new PeleaWindow(this,pelea).open()

@@ -14,7 +14,6 @@ import org.uqbar.commons.utils.Observable
 	var String nombre
 	var int dinero
 	var List<Robot> robots
-	var Pelea peleaActiva
 	
 	new(String nombre){
 		this.nombre = nombre
@@ -57,12 +56,12 @@ import org.uqbar.commons.utils.Observable
 			throw new NoHayDineroParaReparacionException
 	}
 	
-	def seleccionarRobotPropio(Robot robot){
-		peleaActiva.seleccionarRobotPropio(robot)
+	def seleccionarRobotPropio(Pelea pelea, Robot robot){
+		pelea.seleccionarRobotPropio(robot)
 	}
 	
-	def seleccionarRobotRival(Robot robot){
-		peleaActiva.seleccionarRobotRival(robot)
+	def seleccionarRobotRival(Pelea pelea, Robot robot){
+		pelea.seleccionarRobotRival(robot)
 	}
 	
 	def Boolean puedoApostar(int apuesta) {
@@ -71,17 +70,17 @@ import org.uqbar.commons.utils.Observable
 		return true
 	}
 	
-	def definirApuesta(int apuesta){
+	def definirApuesta(Pelea pelea, int apuesta){
 		if (puedoApostar(apuesta)){
-			this.peleaActiva.definirApuesta(apuesta)
+			pelea.definirApuesta(apuesta)
 			this.dinero = this.dinero - apuesta
 		}
 		else
 			throw new ApuestaExedidaException
 	}
 	
-	def pelear(){
-		this.peleaActiva.pelear
+	def pelear(Pelea pelea){
+		pelea.pelear
 	}
 	
 	def actualizarGanancia(int ganancia){

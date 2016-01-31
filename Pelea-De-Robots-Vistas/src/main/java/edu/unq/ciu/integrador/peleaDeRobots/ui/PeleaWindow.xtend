@@ -70,8 +70,8 @@ class PeleaWindow  extends SimpleWindow<Pelea>{
 	
 	def pelear(){
 		try {
-			this.modelObject.jugador.definirApuesta(this.modelObject.apuesta)
-			this.modelObject.jugador.pelear()
+			this.modelObject.jugador.definirApuesta(this.modelObject,this.modelObject.apuesta)
+			this.modelObject.jugador.pelear(this.modelObject)
 			showInfo(this.modelObject.resultado)
 			this.close()
 		} 

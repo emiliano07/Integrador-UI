@@ -60,9 +60,9 @@ class Test_Exception {
 	@Test 
 	def void apuestaExedidaException() {
 		jug.dinero = 10
-		jug.peleaActiva = new Pelea(jug)
+		var pelea = new Pelea(jug)
 		try {
-			jug.definirApuesta(75)
+			jug.definirApuesta(pelea,75)
 		} 
 		catch (ApuestaExedidaException e) {
 			e.printStackTrace()

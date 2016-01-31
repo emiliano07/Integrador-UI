@@ -26,7 +26,6 @@ class Test_Jugador {
 		Assert::assertEquals("emi",jugador.nombre)
 		Assert::assertEquals(0,jugador.dinero)
 		Assert::assertEquals(0,jugador.robots.size)
-		Assert::assertEquals(null,jugador.peleaActiva)
 	}
 	
 	@Test 
@@ -62,24 +61,17 @@ class Test_Jugador {
 	}
 	
 	@Test 
-	def void iniciarPelea(){
-		Assert::assertEquals(null,jugador.peleaActiva)
-		jugador.peleaActiva = new Pelea(jugador)
-		Assert::assertEquals("emi",jugador.peleaActiva.jugador.nombre)
-	}
-	
-	@Test 
 	def void seleccionarRobotPropio(){
-		jugador.peleaActiva = new Pelea(jugador)
-		jugador.seleccionarRobotPropio(robot)
-		Assert::assertEquals("rob",jugador.peleaActiva.robotPropio.nombre)
+		var Pelea pelea = new Pelea(jugador)
+		jugador.seleccionarRobotPropio(pelea,robot)
+		Assert::assertEquals("rob",pelea.robotPropio.nombre)
 	}
 	
 	@Test 
 	def void seleccionarRobotRival(){
-		jugador.peleaActiva = new Pelea(jugador)
-		jugador.seleccionarRobotRival(robot)
-		Assert::assertEquals("rob",jugador.peleaActiva.robotRival.nombre)
+		var Pelea pelea = new Pelea(jugador)
+		jugador.seleccionarRobotRival(pelea,robot)
+		Assert::assertEquals("rob",pelea.robotRival.nombre)
 	}
 	
 	@Test 
@@ -94,9 +86,9 @@ class Test_Jugador {
 	@Test 
 	def void definirApuesta(){
 		jugador.dinero = 100
-		jugador.peleaActiva = new Pelea(jugador)
-		jugador.definirApuesta(75)
-		Assert::assertEquals(75,jugador.peleaActiva.apuesta)		
+		var Pelea pelea = new Pelea(jugador)
+		jugador.definirApuesta(pelea,75)
+		Assert::assertEquals(75,pelea.apuesta)		
 	}
 	
 	@Test 
@@ -123,12 +115,12 @@ class Test_Jugador {
 	def void pelear(){
 		var Jugador jugadorRival = new Jugador("Beto")
 		var Robot robotRival = new Robot("rival",200,jugadorRival)
-		jugador.peleaActiva = new Pelea(jugador)
-		jugador.peleaActiva.seleccionarRobotPropio(robot)
-		jugador.peleaActiva.seleccionarRobotRival(robotRival)
+		var Pelea pelea = new Pelea(jugador)
+		jugador.seleccionarRobotPropio(pelea,robot)
+		jugador.seleccionarRobotRival(pelea,robotRival)
 		jugador.dinero = 1000
-		jugador.definirApuesta(100)
-		jugador.pelear
+		jugador.definirApuesta(pelea,100)
+		jugador.pelear(pelea)
 		Assert::assertEquals(5,robot.deterioro)	
 		
 		//El siguiente AssertEquals puede o no funcionar, ya que depende de un número al azar (cero o uno).

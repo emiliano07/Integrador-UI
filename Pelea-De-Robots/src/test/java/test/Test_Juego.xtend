@@ -28,7 +28,6 @@ class Test_Juego {
 		Assert::assertEquals("emi",juego.jugadores.get(0).nombre)
 		Assert::assertEquals(0,juego.jugadores.get(0).dinero)
 		Assert::assertEquals(0,juego.jugadores.get(0).robots.size)
-		Assert::assertEquals(null,juego.jugadores.get(0).peleaActiva)
 	}
 	
 	@Test 

@@ -39,24 +39,24 @@ class MejorarWindow extends SimpleWindow<MejorarApplicationModel>{
 			bindValueToProperty("poder")
 		]
 		
-		var table = new Table<Mejora>(mainPanel, Mejora) => [
+		var tablaDeMejoras = new Table<Mejora>(mainPanel, Mejora) => [
 			bindItemsToProperty("robot.mejorasPosibles")
 			bindValueToProperty("mejoraSeleccionada")
 		]
 		
-		new Column<Mejora>(table) => [
+		new Column<Mejora>(tablaDeMejoras) => [
 			title = "Nombre"
 			fixedSize = 120
 			bindContentsToProperty("nombre")
 		]
 		
-		new Column<Mejora>(table) => [
+		new Column<Mejora>(tablaDeMejoras) => [
 			title = "Aumento"
 			fixedSize = 120
 			bindContentsToProperty("mejora")
 		]
 		
-		new Column<Mejora>(table) => [
+		new Column<Mejora>(tablaDeMejoras) => [
 			title = "Precio"
 			fixedSize = 120
 			bindContentsToProperty("precio")
