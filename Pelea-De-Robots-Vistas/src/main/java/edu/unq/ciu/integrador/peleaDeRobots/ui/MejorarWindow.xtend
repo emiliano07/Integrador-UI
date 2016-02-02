@@ -39,28 +39,23 @@ class MejorarWindow extends SimpleWindow<MejorarApplicationModel>{
 			bindValueToProperty("poder")
 		]
 		
+		var thirdPanel = new Panel(mainPanel)
+		secondPanel.setLayout(new HorizontalLayout)
+		
+		new Label(thirdPanel) => [
+			text = "Dinero disponible: $" + modelObject.jugador.dinero
+			foreground = Color.BLUE
+			fontSize = 15
+		]
+		
 		var tablaDeMejoras = new Table<Mejora>(mainPanel, Mejora) => [
 			bindItemsToProperty("robot.mejorasPosibles")
 			bindValueToProperty("mejoraSeleccionada")
 		]
 		
-		new Column<Mejora>(tablaDeMejoras) => [
-			title = "Nombre"
-			fixedSize = 120
-			bindContentsToProperty("nombre")
-		]
-		
-		new Column<Mejora>(tablaDeMejoras) => [
-			title = "Aumento"
-			fixedSize = 120
-			bindContentsToProperty("mejora")
-		]
-		
-		new Column<Mejora>(tablaDeMejoras) => [
-			title = "Precio"
-			fixedSize = 120
-			bindContentsToProperty("precio")
-		]
+		createNewColumn(Mejora,tablaDeMejoras,"Nombre","nombre")
+		createNewColumn(Mejora,tablaDeMejoras,"Aumento","mejora")
+		createNewColumn(Mejora,tablaDeMejoras,"Precio","precio")
 		
 		var buttonPanel = new Panel(mainPanel)
 		buttonPanel.setLayout(new HorizontalLayout)
@@ -80,6 +75,14 @@ class MejorarWindow extends SimpleWindow<MejorarApplicationModel>{
 			onClick [ | this.close() ]
 			width = 75
 			height = 20
+		]
+	}
+	
+	def createNewColumn(Object object, Table table, String texto, String property){
+		new Column<Object>(table) => [
+			title = texto
+			fixedSize = 120
+			bindContentsToProperty(property)
 		]
 	}
 	

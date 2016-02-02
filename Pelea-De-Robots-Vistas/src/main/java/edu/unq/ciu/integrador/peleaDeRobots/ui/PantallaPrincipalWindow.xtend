@@ -62,36 +62,11 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 			bindValueToProperty("robotSeleccionado")
 		]
 		
-		new Column<Robot>(tablaDeRobotsPropios) => [
-			title = "Nombre"
-			fixedSize = 120
-			bindContentsToProperty("nombre")
-			
-		]
-		
-		new Column<Robot>(tablaDeRobotsPropios) => [
-			title = "Daño"
-			fixedSize = 120
-			bindContentsToProperty("deterioro")
-		]
-		
-		new Column<Robot>(tablaDeRobotsPropios) => [
-			title = "Poder"
-			fixedSize = 120
-			bindContentsToProperty("poder")
-		]
-		
-		new Column<Robot>(tablaDeRobotsPropios) => [
-			title = "Poder Efectivo"
-			fixedSize = 120
-			bindContentsToProperty("poderEfectivo")
-		]
-		
-		new Column<Robot>(tablaDeRobotsPropios) => [
-			title = "Precio"
-			fixedSize = 120
-			bindContentsToProperty("precio")
-		]
+		createNewColumn(Robot,tablaDeRobotsPropios,"Nombre","nombre")
+		createNewColumn(Robot,tablaDeRobotsPropios,"Daño","deterioro")
+		createNewColumn(Robot,tablaDeRobotsPropios,"Poder","poder")
+		createNewColumn(Robot,tablaDeRobotsPropios,"Poder Efectivo","poderEfectivo")
+		createNewColumn(Robot,tablaDeRobotsPropios,"Precio","precio")
 		
 		val elementSelected = new NotNullObservable("robotSeleccionado")
 		
@@ -128,29 +103,12 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 			bindValueToProperty("robotRivalSeleccionado")
 		]
 		
-		new Column<Robot>(tablaDeRobotsRivales) => [
-			title = "Dueño"
-			fixedSize = 120
-			bindContentsToProperty("dueño.nombre")
-		]
-		
-		new Column<Robot>(tablaDeRobotsRivales) => [
-			title = "Nombre"
-			fixedSize = 120
-			bindContentsToProperty("nombre")
-		]
-		
-		new Column<Robot>(tablaDeRobotsRivales) => [
-			title = "Poder"
-			fixedSize = 120
-			bindContentsToProperty("poder")
-		]
-		
-		new Column<Robot>(tablaDeRobotsRivales) => [
-			title = "Daño"
-			fixedSize = 120
-			bindContentsToProperty("deterioro")
-		]
+		createNewColumn(Robot,tablaDeRobotsRivales,"Dueño","dueño.nombre")
+		createNewColumn(Robot,tablaDeRobotsRivales,"Nombre","nombre")
+		createNewColumn(Robot,tablaDeRobotsRivales,"Daño","deterioro")
+		createNewColumn(Robot,tablaDeRobotsRivales,"Poder","poder")
+		createNewColumn(Robot,tablaDeRobotsRivales,"Poder Efectivo","poderEfectivo")
+		createNewColumn(Robot,tablaDeRobotsRivales,"Precio","precio")
 		
 		val elementSelected2 = new NotNullObservable("robotRivalSeleccionado")
 		
@@ -161,6 +119,14 @@ class PantallaPrincipalWindow extends SimpleWindow<JugadorApplicationModel>{
 			bindEnabled(elementSelected2)
 			width = 75
 			height = 20
+		]
+	}
+	
+	def createNewColumn(Object object, Table table, String texto, String property){
+		new Column<Object>(table) => [
+			title = texto
+			fixedSize = 120
+			bindContentsToProperty(property)
 		]
 	}
 	

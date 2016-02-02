@@ -30,7 +30,10 @@ import org.uqbar.commons.utils.Observable
 	}
 	
 	def actualizarDesgaste(int desgaste) {
-		deterioro = deterioro + desgaste
+		if (this.deterioro + desgaste < 100)
+			this.deterioro = this.deterioro + desgaste
+		else
+			this.deterioro = 100
 	}
 	
 	def reparacionParcial(int reparacion){

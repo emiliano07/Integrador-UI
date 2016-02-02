@@ -65,7 +65,7 @@ import org.uqbar.commons.utils.Observable
 	}
 	
 	def Boolean puedoApostar(int apuesta) {
-		if(apuesta == 0 || !((apuesta * 100 / this.dinero) < 76))
+		if(apuesta <= 0 || !((apuesta * 100 / this.dinero) < 76))
 			return false
 		return true
 	}

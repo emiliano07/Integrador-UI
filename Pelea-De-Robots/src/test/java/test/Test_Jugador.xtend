@@ -125,6 +125,8 @@ class Test_Jugador {
 		
 		//El siguiente AssertEquals puede o no funcionar, ya que depende de un número al azar (cero o uno).
 		//En este caso evaluo cuando el número al azar es cero y el Robot del Jugador resulta ganador.
-		Assert::assertEquals(1200,jugador.dinero)	
+		Assert::assertEquals(true,pelea.gane)
+		Assert::assertEquals("Resultaste el ganador de la Pelea. Felicitaciones!!!",pelea.resultado)
+		Assert::assertEquals(1200,jugador.dinero)
 	}
 }
