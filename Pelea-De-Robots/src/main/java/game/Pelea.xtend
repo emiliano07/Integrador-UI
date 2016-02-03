@@ -1,6 +1,7 @@
 package game
 
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
 
 @Observable
@@ -55,14 +56,27 @@ import org.uqbar.commons.utils.Observable
 	}
 	
 	def actualizarGanancia(){
-		this.jugador.actualizarGanancia(this.apuesta * (this.robotPropio.poderEfectivo + this.robotRival.poderEfectivo) / this.robotPropio.poderEfectivo)
+		if(this.robotPropio.poderEfectivo != 0)
+			this.jugador.actualizarGanancia(this.apuesta * (this.robotPropio.poderEfectivo + this.robotRival.poderEfectivo) / this.robotPropio.poderEfectivo)
 	}
 	
 	def void actualizarDesgaste(){
 		this.robotPropio.actualizarDesgaste(Math.max(5,(this.robotPropio.poderEfectivo - this.robotRival.poderEfectivo)))
 	}
 	
-	def Boolean cumpleRequisitos(){
-		return this.apuesta >= 0
+	def setApuesta(Integer monto){
+		this.apuesta = monto
+		if(this.apuesta <= 0){
+			this.apuesta = null
+			throw new UserException ("El monto de la apuesta debe ser positivo")
+		}
+		if(this.apuesta > 10000){
+			this.apuesta = null
+			throw new UserException ("El monto máximo para apostar es: $10.000")
+		}
+		if(this.apuesta == "TODOS LOS STRING"){	//Como hago para evaluar cualquier string?
+			this.apuesta = null
+			throw new UserException ("El valor ingresado debe ser numerico")
+		}
 	}
 }

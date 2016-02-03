@@ -1,6 +1,6 @@
 package test
 
-import exception.ApuestaExedidaException
+import exception.ApuestaExcedidaException
 import exception.NoHayDineroParaCompraException
 import exception.NoHayDineroParaMejoraException
 import exception.NoHayDineroParaReparacionException
@@ -64,7 +64,7 @@ class Test_Exception {
 		try {
 			jug.definirApuesta(pelea,75)
 		} 
-		catch (ApuestaExedidaException e) {
+		catch (ApuestaExcedidaException e) {
 			e.printStackTrace()
 		}
 	}

@@ -1,6 +1,6 @@
 package game
 
-import exception.ApuestaExedidaException
+import exception.ApuestaExcedidaException
 import exception.NoHayDineroParaCompraException
 import exception.NoHayDineroParaMejoraException
 import exception.NoHayDineroParaReparacionException
@@ -64,7 +64,7 @@ import org.uqbar.commons.utils.Observable
 		pelea.seleccionarRobotRival(robot)
 	}
 	
-	def Boolean puedoApostar(int apuesta) {
+	def Boolean puedoApostar(Integer apuesta) {
 		if(apuesta <= 0 || !((apuesta * 100 / this.dinero) < 76))
 			return false
 		return true
@@ -76,7 +76,7 @@ import org.uqbar.commons.utils.Observable
 			this.dinero = this.dinero - apuesta
 		}
 		else
-			throw new ApuestaExedidaException
+			throw new ApuestaExcedidaException
 	}
 	
 	def pelear(Pelea pelea){

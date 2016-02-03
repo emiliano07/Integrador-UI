@@ -1,6 +1,6 @@
 package edu.unq.ciu.integrador.peleaDeRobots.ui
 
-import exception.ApuestaExedidaException
+import exception.ApuestaExcedidaException
 import game.Pelea
 import java.awt.Color
 import org.uqbar.arena.bindings.NotNullObservable
@@ -75,7 +75,7 @@ class PeleaWindow  extends SimpleWindow<Pelea>{
 			showInfo(this.modelObject.resultado)
 			this.close()
 		} 
-		catch (ApuestaExedidaException e) {
+		catch (ApuestaExcedidaException e) {
 			showInfo(e.message)
 		}
 	}
